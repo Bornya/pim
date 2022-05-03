@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Information update</title>
+    <style>
+        #form {
+            height: 500px;
+            width: 900px;
+            /* background: pink; */
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .twoPAge {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            margin-left: 4%;
+            height: auto;
+        }
+
+        .allinput {
+            display: block;
+            box-sizing: border-box;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            padding: 6px 10px;
+            height: 38px;
+            width: 100%;
+            line-height: 1.3;
+            border-radius: 2px;
+            color: #005395;
+            font-weight: 600
+        }
+
+        .wpforms-field-label {
+            display: block;
+            color: #7b7b7b;
+            font-family: 'Microsoft YaHei', 'Lato';
+            font-size: 16px;
+            float: none;
+            line-height: 1.3;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            padding: 0;
+            word-break: break-all;
+        }
+
+        .onePage {
+            width: 95%;
+            margin-left: 4%
+        }
+        #formsubmit{
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            background-color: #005395;
+            color: #fff;
+            font-weight: 600;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<h2 align="center">Personal Information update</h2>
+<form th:action="@{/saveUserInfo}" th:object="${user}" method="POST">
+    <input type="hidden" th:field="*{id}" value=""  /><br/>
+    <div style="display: flex;justify-content: space-between;">
+        <div class="fullName twoPAge">
+            <label for="first_name" class="wpforms-field-label">First Name<span
+                    style="color: #ff0000;">*</span></label>
+            <input type="text" value="test" th:field="*{first_name}" name="first_name" class="allinput" />
+        </div>
+        <div class="fullName twoPAge">
+            <label for="last_name" class="wpforms-field-label">LastName<span
+                    style="color: #ff0000;">*</span></label>
+            <input type="text" value="tom" th:field="*{last_name}" name="last_name" class="allinput"><br>
+
+        </div>
+    </div>
+    <div class="address onePage">
+        <label for="address_one" class="wpforms-field-label">Address_one:<span
+                style="color: #ff0000;">*</span></label>
+        <input type="text" value="asasasaa" th:field="*{address_one}" name="address_one" class="allinput" />
+    </div>
+    <div class="onePage">
+        <label for="email">email:<span style="color: #ff0000;">*</span></label>
+        <input type="text" value="test@qq.com" th:field="*{email}" name="email" class="allinput" /> <br>
+    </div>
+    <div style="display: flex;justify-content: space-between;">
+        <div class="twoPAge">
+            <label for="country" class="wpforms-field-label">country:<span style="color: #ff0000;">*</span></label>
+            <input type="text" value="asd" th:field="*{country}" name="country" class="allinput" /> <br>
+        </div>
+        <div class="twoPAge">
+            <label for="city" class="wpforms-field-label">city<span style="color: #ff0000;">*</span></label>
+            <input type="text" value="asdad" th:field="*{city}" name="city" class="allinput" /> <br>
+        </div>
+    </div>
+    <div style="display: flex;justify-content: space-between;">
+        <div class="twoPAge">
+            <label for="phone" class="wpforms-field-label">phone:<span style="color: #ff0000;">*</span></label>
+            <input type="text" value="12313" id="phone" name="phone" class="allinput"> <br>
+        </div>
+
+        <div class="twoPAge">
+            <label for="fax" class="wpforms-field-label">fax:<span style="color: #ff0000;">*</span></label>
+            <input type="text" value="123213" th:field="*{fax}" name="fax" class="allinput"> <br>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <input type="submit" value="submit" id="formsubmit">
+    </div>
+</form>
+<!--<form th:action="@{/saveUserInfo}" th:object="${user}" method="POST">-->
+<!--    <input type="hidden" th:field="*{id}" value=""  /><br/>-->
+
+<!--    <label for="first_name">first_name:</label>-->
+<!--    <input type="text" th:field="*{first_name}" value="" /><br/>-->
+
+<!--    <label for="last_name">last_name:</label>-->
+<!--    <input type="text" th:field="*{last_name}" value="" /><br/>-->
+
+<!--    <label for="address_one">address_one:</label>-->
+<!--    <input type="text" th:field="*{address_one}" value="2018-03-28" /> <br/>-->
+
+<!--    <label for="email">email:</label>-->
+<!--    <input type="text" th:field="*{email}" value="2018-03-28" /> <br/>-->
+
+<!--    <label for="city">city:</label>-->
+<!--    <input type="text" th:field="*{city}" value="2018-03-28" /> <br/>-->
+
+<!--    <label for="phone">phone:</label>-->
+<!--    <input type="text" th:field="*{phone}" value="2018-03-28" /> <br/>-->
+
+<!--    <label for="country">country:</label>-->
+<!--    <input type="text" th:field="*{country}" value="2018-03-28" /> <br/>-->
+
+<!--    <label for="fax">fax:</label>-->
+<!--    <input type="text" th:field="*{fax}" value="2018-03-28" /> <br/>-->
+
+<!--    <input type="submit" value="提交"/>-->
+<!--</form>-->
+</body>
+</html>
