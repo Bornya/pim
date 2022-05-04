@@ -28,11 +28,20 @@ public class UserInfoService {
     @Value("${token_file_path}")
     private String token_file_path;
 
+    @Value("${redirect_uri}")
+    private String redirect_uri;
+
+    @Value("${client_secret}")
+    private String client_secret;
+
+    @Value("${client_id}")
+    private String client_id;
+
 
     //OAuth授权流程
     //获取code
     public String getCode() throws IOException {
-        String url = "https://login.salesforce.com/services/oauth2/authorize?response_type=code&client_id="+ BasicConfig.client_id +"&redirect_uri="+BasicConfig.redirect_uri;
+        String url = "https://login.salesforce.com/services/oauth2/authorize?response_type=code&client_id="+ client_id +"&redirect_uri="+redirect_uri;
         Connection.Response response = HttpUtils.get(url);
         String result = Utils.parsingResponse(response);
         System.out.println(result);
@@ -45,9 +54,9 @@ public class UserInfoService {
         Map<String,String> params = new HashMap<>();
         params.put("grant_type","authorization_code");
         params.put("code",code);
-        params.put("client_id",BasicConfig.client_id);
-        params.put("client_secret",BasicConfig.client_secret);
-        params.put("redirect_uri",BasicConfig.redirect_uri);
+        params.put("client_id",client_id);
+        params.put("client_secret",client_secret);
+        params.put("redirect_uri",redirect_uri);
         Connection.Response response = HttpUtils.post(headers,url,params);
         String result = Utils.parsingResponse(response);
         if(result.equals("error")){
@@ -138,7 +147,7 @@ public class UserInfoService {
     //查询一个小时内新的所有数据
     public List<CustomUser> getLastNewUser() throws Exception {
         List<CustomUser> list = new ArrayList<>();
-        String url = "https://pi.pardot.com/api/prospect/version/4/do/query/?created_after="+Utils.getTime(10);
+        String url = "https://pi.pardot.com/api/prospect/version/4/do/query/?created_after="+Utils.getTime(100);
         Connection.Response response = HttpUtils.get(url,getHeaders());
         String result = Utils.parsingResponse(response);
         //解析结果
@@ -158,6 +167,7 @@ public class UserInfoService {
                 String id = "";
                 String getUuid = "";
                 String uuid = "";
+                String first_name = "";
                 while (it.hasNext()) {
                     Element element = (Element) it.next();// 一个Item节点
                     if (element.getName().equals("id")) {
@@ -166,8 +176,11 @@ public class UserInfoService {
                     if (element.getName().equals("uuid")) {
                         getUuid = element.getTextTrim();
                     }
+                    if (element.getName().equals("first_name")) {
+                        first_name = element.getTextTrim();
+                    }
                 }
-                if(id.length()>3){
+                if(id.length()>6&&first_name.contains("test")){  //测试环境，监控测试账号
                     uuid = AESUtil.getEncryptUUid(id);
                     if(!getUuid.equals(uuid)){
                         customUser.setId(id);
@@ -205,8 +218,6 @@ public class UserInfoService {
         }
 
     }
-
-
     //API请求头
     public Map<String,String> getHeaders(){
         String token = Utils.getToken(token_file_path).trim();
