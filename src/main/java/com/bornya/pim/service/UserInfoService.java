@@ -98,64 +98,49 @@ public class UserInfoService {
                 if(element.getName().equals("email")){
                     user.setEmail(element.getTextTrim());
                 }
-                user.setTatler_Digest_New(false);
                 if(element.getName().equals("Tatler_Digest_New")){
                     user.setTatler_Digest_New(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Homes_list(false);
                 if(element.getName().equals("Tatler_Homes_list")){
                     user.setTatler_Homes_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Digest_Hong_Kong_list(false);
+
                 if(element.getName().equals("Tatler_Digest_Hong_Kong_list")){
                     user.setTatler_Digest_Hong_Kong_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Digest_Philippines_list(false);
                 if(element.getName().equals("Tatler_Digest_Philippines_list")){
                     user.setTatler_Digest_Philippines_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Digest_Singapore_list(false);
                 if(element.getName().equals("Tatler_Digest_Singapore_list")){  //住
                     user.setTatler_Digest_Singapore_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Digest_Taiwan_list(false);
                 if(element.getName().equals("Tatler_Digest_Taiwan_list")){
                     user.setTatler_Digest_Taiwan_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Digest_Malaysia_list(false);
                 if(element.getName().equals("Tatler_Digest_Malaysia_list")){ //住
                     user.setTatler_Digest_Malaysia_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Dining_Hong_Kong_list(false);
                 if(element.getName().equals("Tatler_Dining_Hong_Kong_list")){ //住
                     user.setTatler_Dining_Hong_Kong_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Dining_Malaysia_list(false);
                 if(element.getName().equals("Tatler_Dining_Malaysia_list")){ //住
                     user.setTatler_Dining_Malaysia_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Dining_Singapore_list(false);
                 if(element.getName().equals("Tatler_Dining_Singapore_list")){ //住
                     user.setTatler_Dining_Singapore_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Dining_Philippines_list(false);
                 if(element.getName().equals("Tatler_Dining_Philippines_list")){ //住
                     user.setTatler_Dining_Philippines_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setTatler_Digest_Philippines_list(false);
                 if(element.getName().equals("Tatler_Digest_Malaysia_list")){ //住
                     user.setTatler_Digest_Philippines_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setFront_Female(false);
                 if(element.getName().equals("Front_Female")){ //住
                     user.setFront_Female(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                user.setGeneration_T_list(false);
                 if(element.getName().equals("Generation_T_list")){ //住
                     user.setGeneration_T_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-
-
             }
         }
         return user;
@@ -163,14 +148,20 @@ public class UserInfoService {
     //用户信息更新API
     public String updateUserInfo(User user) throws IOException {
         String url = "https://pi.pardot.com/api/prospect/version/4/do/update/id/"+user.getId()
-                +"?first_name="+user.getFirst_name()
-                +"&last_name="+user.getLast_name()
-                +"&address_one="+user.getAddress_one()
-                +"&email="+user.getEmail()
-                +"&city="+user.getCity()
-                +"&phone="+user.getPhone()
-                +"&country="+user.getCountry()
-                +"&fax="+user.getFax();
+                +"?Tatler_Digest_New="+user.isTatler_Digest_New()
+                +"&Tatler_Homes_list="+user.isTatler_Homes_list()
+                +"&Tatler_Digest_Hong_Kong_list="+user.isTatler_Digest_Hong_Kong_list()
+                +"&Tatler_Digest_Philippines_list="+user.isTatler_Digest_Philippines_list()
+                +"&Tatler_Digest_Singapore_list="+user.isTatler_Digest_Singapore_list()
+                +"&Tatler_Digest_Taiwan_list="+user.isTatler_Digest_Taiwan_list()
+                +"&Tatler_Digest_Malaysia_list="+user.isTatler_Digest_Malaysia_list()
+                +"&Tatler_Dining_Hong_Kong_list="+user.isTatler_Dining_Hong_Kong_list()
+                +"&Tatler_Dining_Malaysia_list="+user.isTatler_Dining_Malaysia_list()
+                +"&Tatler_Dining_Singapore_list="+user.isTatler_Dining_Singapore_list()
+                +"&Tatler_Dining_Philippines_list="+user.isTatler_Dining_Philippines_list()
+                +"&Front_Female="+user.isFront_Female()
+                +"&Generation_T_list="+user.isGeneration_T_list()
+                ;
         Connection.Response response = HttpUtils.get(url,getHeaders());
         String result = Utils.parsingResponse(response);
         System.out.println(result);

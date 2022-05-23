@@ -179,7 +179,7 @@ public class AESUtil {
         byte[] secretKey = getSecretKey(password);
         Key key = toKey(secretKey);
 
-        String data = "15443324";
+        String data = "18328705";
         System.out.println("明文 ：" + data);
 
         byte[] encryptData = encrypt(data.getBytes(), key);

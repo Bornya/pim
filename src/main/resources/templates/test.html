@@ -18,6 +18,7 @@
         <form th:action="@{/saveUserInfo}" th:object="${user}" method="POST">
             <!--email-->
             <div class="form-section">
+                <input type="hidden" th:field="*{id}" value="" /><br/>
                 <h3>Email Address</h3>
                 <label>
                     <input type="text" th:field="*{email}" name="email" class="form-control" placeholder=""  required="">
@@ -171,7 +172,8 @@
             <hr>
             <div class="form-section">
                 <div class="input-group mb-3 mt-3">
-                    <button class="btn btn-outline-secondary" type="button" id="formsubmit">Save Preferences</button>
+                    <input type="submit" value="Save Preferences" id="formsubmit">
+<!--                    <button class="btn btn-outline-secondary" type="button" id="formsubmit">Save Preferences</button>-->
                 </div>
             </div>
         </form>
