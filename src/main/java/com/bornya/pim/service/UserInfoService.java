@@ -8,8 +8,6 @@ import com.bornya.pim.entity.User;
 import com.bornya.pim.until.AESUtil;
 import com.bornya.pim.until.HttpUtils;
 import com.bornya.pim.until.Utils;
-import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -19,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.security.Key;
 import java.util.*;
 
 @Service
@@ -90,7 +87,6 @@ public class UserInfoService {
                 e.printStackTrace();
             }
             Element root = doc.getRootElement();// 指向根节点
-            // rootElement.elements()获取根节点下所有的节点，
             System.out.println();
             List<Element> elements = root.elements();
             Iterator it = elements.get(0).elementIterator();
@@ -99,30 +95,67 @@ public class UserInfoService {
                 if(element.getName().equals("id")){
                     user.setId(element.getTextTrim());
                 }
-                if(element.getName().equals("first_name")){
-                    user.setFirst_name(element.getTextTrim());
-                }
-                if(element.getName().equals("last_name")){
-                    user.setLast_name(element.getTextTrim());
-                }
                 if(element.getName().equals("email")){
                     user.setEmail(element.getTextTrim());
                 }
-                if(element.getName().equals("address_one")){
-                    user.setAddress_one(element.getTextTrim());
+                user.setTatler_Digest_New(false);
+                if(element.getName().equals("Tatler_Digest_New")){
+                    user.setTatler_Digest_New(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                if(element.getName().equals("city")){
-                    user.setCity(element.getTextTrim());
+                user.setTatler_Homes_list(false);
+                if(element.getName().equals("Tatler_Homes_list")){
+                    user.setTatler_Homes_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                if(element.getName().equals("phone")){
-                    user.setPhone(element.getTextTrim());
+                user.setTatler_Digest_Hong_Kong_list(false);
+                if(element.getName().equals("Tatler_Digest_Hong_Kong_list")){
+                    user.setTatler_Digest_Hong_Kong_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                if(element.getName().equals("country")){
-                    user.setCountry(element.getTextTrim());
+                user.setTatler_Digest_Philippines_list(false);
+                if(element.getName().equals("Tatler_Digest_Philippines_list")){
+                    user.setTatler_Digest_Philippines_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
-                if(element.getName().equals("fax")){
-                    user.setFax(element.getTextTrim());
+                user.setTatler_Digest_Singapore_list(false);
+                if(element.getName().equals("Tatler_Digest_Singapore_list")){  //住
+                    user.setTatler_Digest_Singapore_list(Boolean.parseBoolean(element.getTextTrim()));
                 }
+                user.setTatler_Digest_Taiwan_list(false);
+                if(element.getName().equals("Tatler_Digest_Taiwan_list")){
+                    user.setTatler_Digest_Taiwan_list(Boolean.parseBoolean(element.getTextTrim()));
+                }
+                user.setTatler_Digest_Malaysia_list(false);
+                if(element.getName().equals("Tatler_Digest_Malaysia_list")){ //住
+                    user.setTatler_Digest_Malaysia_list(Boolean.parseBoolean(element.getTextTrim()));
+                }
+                user.setTatler_Dining_Hong_Kong_list(false);
+                if(element.getName().equals("Tatler_Dining_Hong_Kong_list")){ //住
+                    user.setTatler_Dining_Hong_Kong_list(Boolean.parseBoolean(element.getTextTrim()));
+                }
+                user.setTatler_Dining_Malaysia_list(false);
+                if(element.getName().equals("Tatler_Dining_Malaysia_list")){ //住
+                    user.setTatler_Dining_Malaysia_list(Boolean.parseBoolean(element.getTextTrim()));
+                }
+                user.setTatler_Dining_Singapore_list(false);
+                if(element.getName().equals("Tatler_Dining_Singapore_list")){ //住
+                    user.setTatler_Dining_Singapore_list(Boolean.parseBoolean(element.getTextTrim()));
+                }
+                user.setTatler_Dining_Philippines_list(false);
+                if(element.getName().equals("Tatler_Dining_Philippines_list")){ //住
+                    user.setTatler_Dining_Philippines_list(Boolean.parseBoolean(element.getTextTrim()));
+                }
+                user.setTatler_Digest_Philippines_list(false);
+                if(element.getName().equals("Tatler_Digest_Malaysia_list")){ //住
+                    user.setTatler_Digest_Philippines_list(Boolean.parseBoolean(element.getTextTrim()));
+                }
+                user.setFront_Female(false);
+                if(element.getName().equals("Front_Female")){ //住
+                    user.setFront_Female(Boolean.parseBoolean(element.getTextTrim()));
+                }
+                user.setGeneration_T_list(false);
+                if(element.getName().equals("Generation_T_list")){ //住
+                    user.setGeneration_T_list(Boolean.parseBoolean(element.getTextTrim()));
+                }
+
+
             }
         }
         return user;

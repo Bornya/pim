@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}" type="text/css">
+</head>
+<body>
+<div id="maincontainerdiv" class="container">
+    <div class="title-section text-center">
+        <div class="logo">
+            <img th:src="@{/static/image/Tatler_Logo.png}" alt="TatlerLogo" width="200">
+        </div>
+        <h2>Subscribe to our Newsletters</h2>
+        <hr>
+    </div>
+    <div class="formcontainer">
+        <form th:action="@{/saveUserInfo}" th:object="${user}" method="POST">
+            <!--email-->
+            <div class="form-section">
+                <h3>Email Address</h3>
+                <label>
+                    <input type="text" th:field="*{email}" name="email" class="form-control" placeholder=""  required="">
+                </label>
+            </div>
+            <!--Best of Tatler-->
+            <div class="form-section">
+                <h3>Best of Tatler</h3>
+                <p class="formpara">A must-read, curated weekly roundup of the biggest trending stories across Asia.
+                    Be in the know first.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_New}"  name="Tatler_Digest_New">
+                    <label class="form-check-label" for="Tatler_Digest_New">
+                        Best of Tatler
+                    </label>
+                </div>
+            </div>
+
+            <!--Tatler Homes-->
+            <div class="form-section">
+                <h3>Best of Tatler Homes</h3>
+                <p class="formpara">
+                    Transform your space into a luxurious sanctuary with exclusive home tours, property news and
+                    decor tips.
+                </p>
+                <!--Checkboxes-->
+                <div class="form-check col-6">
+                    <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Homes_list}"  name="Tatler_Homes_list">
+                    <label class="form-check-label" for="Tatler_Homes_list">
+                        Best of Tatler Homes
+                    </label>
+                </div>
+            </div>
+
+            <!--Tatler Digest-->
+            <div class="form-section">
+                <h3>Tatler Digest</h3>
+                <p class="formpara">
+                    Tatler Digest Our editor's picks to the latest in lifestyle news, dining tips and cultural
+                    happenings in and around Asia.
+                </p>
+                <!--Checkboxes-->
+                <div class="row tal-inlinecheckboxes">
+
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Hong_Kong_list}"  name="Tatler_Digest_Hong_Kong_list">
+                        <label class="form-check-label" for="Tatler_Digest_Hong_Kong_list">
+                            Hong Kong
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Philippines_list}"  name="Tatler_Digest_Philippines_list">
+                        <label class="form-check-label" for="Tatler_Digest_Philippines_list">
+                            Philippines
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 form-check-custom-top">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Singapore_list}"  name="Tatler_Digest_Singapore_list">
+                        <label class="form-check-label" for="Tatler_Digest_Singapore_list">
+                            Singapore
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 form-check-custom-top">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Taiwan_list}"  name="Tatler_Digest_Taiwan_list">
+                        <label class="form-check-label" for="Tatler_Digest_Taiwan_list">
+                            Taiwan
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 form-check-custom-top">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Malaysia_list}"  name="Tatler_Digest_Malaysia_list">
+                        <label class="form-check-label" for="Tatler_Digest_Malaysia_list">
+                            Malaysia
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!--Tatler Dining-->
+            <div class="form-section">
+                <h3>Tatler Dining</h3>
+                <p class="formpara">
+                    Ultimate guide to Asia’s dining scene with restaurant news, reviews and the tastemakers shaping
+                    the scene.
+                </p>
+                <!--Checkboxes-->
+                <div class="row tal-inlinecheckboxes">
+
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Hong_Kong_list}" name="Tatler_Dining_Hong_Kong_list">
+                        <label class="form-check-label" for="Tatler_Dining_Hong_Kong_list">
+                            Hong Kong
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Malaysia_list}" name="Tatler_Dining_Malaysia_list">
+                        <label class="form-check-label" for="Tatler_Dining_Malaysia_list">
+                            Malaysia
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 form-check-custom-top">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Singapore_list}" name="Tatler_Dining_Singapore_list">
+                        <label class="form-check-label" for="Tatler_Dining_Singapore_list">
+                            Singapore
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 form-check-custom-top">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Philippines_list}" name="Tatler_Dining_Philippines_list">
+                        <label class="form-check-label" for="Tatler_Dining_Philippines_list">
+                            Philippines
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!--Front & Female-->
+            <div class="form-section">
+                <h3>Front &amp; Female</h3>
+                <p class="formpara">
+                    Stories that celebrate trailblazers and provoke conversations on women’s health, money, sex, parenting, and more.
+                </p>
+                <!--Checkboxes-->
+                <div class="form-check col-6">
+                    <input class="form-check-input" type="checkbox" value="true" th:field="*{Front_Female}" name="FrontFemale">
+                    <label class="form-check-label" for="FrontFemale">
+                        Front &amp; Female
+                    </label>
+                </div>
+            </div>
+
+            <!--Front & Female-->
+            <div class="form-section">
+                <h3>Generation T</h3>
+                <p class="formpara">
+                    Your guide to the people, businesses and ideas shaping Asia’s future.
+                </p>
+                <!--Checkboxes-->
+                <div class="form-check col-10">
+                    <input class="form-check-input" type="checkbox" value="true" th:field="*{Generation_T_list}" name="Generation_T_list">
+                    <label class="form-check-label" for="Generation_T_list">
+                        The Gen.T Weekly and The Deep Dive
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <div class="form-section">
+                <div class="input-group mb-3 mt-3">
+                    <button class="btn btn-outline-secondary" type="button" id="formsubmit">Save Preferences</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

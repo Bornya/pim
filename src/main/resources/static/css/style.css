@@ -1,0 +1,72 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+/*******Main Css*******/
+.container{
+	margin-top:20px;
+	margin-bottom:20px;
+}
+hr{
+    margin: 40px 0px;
+    background-color: #ccc;
+}
+h2,h3,h4,h5,h6{
+    font-weight: 700;
+}
+/*Custom Class*/
+.formpara,label{
+    font-weight: 400;
+    font-size: 20px;
+}
+.formpara {
+    margin-bottom: 40px;
+}
+#maincontainerdiv{
+    padding: 40px 40px;
+    background-color: #fff;
+    width: 600px;
+    font-family: 'Playfair Display', serif;
+}
+/*Main Form*/
+.form-section{
+    margin: 40px 0px;
+}
+.row.tal-inlinecheckboxes{
+    margin: 0;
+}
+.form-check{
+    margin-top: 0px;
+}
+#submit-button{
+    flex: 0.1 auto;
+    background-color: #000;
+    color: #fff;
+    border-radius: 0;
+    border-color: #000;
+}
+/*BootStrap*/
+.form-check-input[type=checkbox]{
+    border-radius: 0;
+    width: 32px;
+    height: 32px;
+}
+label.form-check-label{
+    font-size: 20px;
+    line-height: 35px;
+}
+.form-check-input{
+    margin-top: 0.20em;
+}
+label{
+    margin-left: 15px;
+}
+.form-control[type="text"] {
+    border-radius: 0;
+    border-color: #000;
+}
+.form-check-custom-top {
+    margin-top: 40px;
+}

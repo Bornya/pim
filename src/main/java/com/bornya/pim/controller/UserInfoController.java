@@ -26,6 +26,19 @@ public class UserInfoController {
         return modelAndView;
     }
 
+    @GetMapping("/test")
+    public ModelAndView test() throws Exception {
+        //获取用户信息
+//        User user = userInfoService.getUserInfo(uuid);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("test");
+        User user = new User();
+        user.setEmail("asdadadda");
+        user.setTatler_Digest_New(true);
+        modelAndView.addObject("user",user);
+        return modelAndView;
+    }
+
     @PostMapping("/saveUserInfo")
     public String saveUserInfo(User user) throws IOException {
         System.out.println(user.getFirst_name());
