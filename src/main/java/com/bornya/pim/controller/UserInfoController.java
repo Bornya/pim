@@ -37,9 +37,12 @@ public class UserInfoController {
     }
 
     @PostMapping("/saveUserInfo")
-    public String saveUserInfo(User user) throws IOException {
+    public ModelAndView saveUserInfo(User user) throws IOException {
         System.out.println(user.getFirst_name());
-        return userInfoService.updateUserInfo(user);
+        userInfoService.updateUserInfo(user);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("successful");
+        return modelAndView;
     }
 
     //设置回调接口用于获取登录之后的token

@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/static/css/style.css}" type="text/css">
+    <style>
+        .form-check{
+            display: flex;
+        }
+        .tal-inlinecheckboxes{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .commonStyle{
+            width: 33%;}
+
+        #formsubmit{
+            color: #fff;
+            background-color: #333;
+            height: 50px;
+
+            font-size: 20px;
+            padding: 0 10px;
+        }
+        }
+    </style>
+
 </head>
 <body>
 <div id="maincontainerdiv" class="container">
@@ -63,35 +85,35 @@
                 <!--Checkboxes-->
                 <div class="row tal-inlinecheckboxes">
 
-                    <div class="form-check col-6">
+                    <div class="form-check col-6 commonStyle">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Hong_Kong_list}"  name="Tatler_Digest_Hong_Kong_list">
                         <label class="form-check-label" for="Tatler_Digest_Hong_Kong_list">
                             Hong Kong
                         </label>
                     </div>
 
-                    <div class="form-check col-6">
+                    <div class="form-check col-6 commonStyle">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Philippines_list}"  name="Tatler_Digest_Philippines_list">
                         <label class="form-check-label" for="Tatler_Digest_Philippines_list">
                             Philippines
                         </label>
                     </div>
 
-                    <div class="form-check col-6 form-check-custom-top">
+                    <div class="form-check col-6 commonStyle">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Singapore_list}"  name="Tatler_Digest_Singapore_list">
                         <label class="form-check-label" for="Tatler_Digest_Singapore_list">
                             Singapore
                         </label>
                     </div>
 
-                    <div class="form-check col-6 form-check-custom-top">
+                    <div class="form-check col-6 form-check-custom-top commonStyle">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Taiwan_list}"  name="Tatler_Digest_Taiwan_list">
                         <label class="form-check-label" for="Tatler_Digest_Taiwan_list">
                             Taiwan
                         </label>
                     </div>
 
-                    <div class="form-check col-6 form-check-custom-top">
+                    <div class="form-check col-6 form-check-custom-top commonStyle ">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Malaysia_list}"  name="Tatler_Digest_Malaysia_list">
                         <label class="form-check-label" for="Tatler_Digest_Malaysia_list">
                             Malaysia
@@ -110,28 +132,28 @@
                 <!--Checkboxes-->
                 <div class="row tal-inlinecheckboxes">
 
-                    <div class="form-check col-6">
+                    <div class="form-check col-6 commonStyle">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Hong_Kong_list}" name="Tatler_Dining_Hong_Kong_list">
                         <label class="form-check-label" for="Tatler_Dining_Hong_Kong_list">
                             Hong Kong
                         </label>
                     </div>
 
-                    <div class="form-check col-6">
+                    <div class="form-check col-6 commonStyle">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Malaysia_list}" name="Tatler_Dining_Malaysia_list">
                         <label class="form-check-label" for="Tatler_Dining_Malaysia_list">
                             Malaysia
                         </label>
                     </div>
 
-                    <div class="form-check col-6 form-check-custom-top">
+                    <div class="form-check col-6 commonStyle">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Singapore_list}" name="Tatler_Dining_Singapore_list">
                         <label class="form-check-label" for="Tatler_Dining_Singapore_list">
                             Singapore
                         </label>
                     </div>
 
-                    <div class="form-check col-6 form-check-custom-top">
+                    <div class="form-check col-6 form-check-custom-top commonStyle">
                         <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Philippines_list}" name="Tatler_Dining_Philippines_list">
                         <label class="form-check-label" for="Tatler_Dining_Philippines_list">
                             Philippines
@@ -171,7 +193,7 @@
             </div>
             <hr>
             <div class="form-section">
-                <div class="input-group mb-3 mt-3">
+                <div class="input-group mb-3 mt-3" style="text-align: center">
                     <input type="submit" value="Save Preferences" id="formsubmit">
 <!--                    <button class="btn btn-outline-secondary" type="button" id="formsubmit">Save Preferences</button>-->
                 </div>

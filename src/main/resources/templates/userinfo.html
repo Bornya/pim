@@ -1,117 +1,227 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Personal Information update</title>
+    <title>TatlerAsia</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}" type="text/css">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link th:href="@{/static/css/css2}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <!--BootStrap Css-->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
     <style>
-        #form {
-            height: 500px;
-            width: 900px;
-            /* background: pink; */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+        }
+        .form-check{
+            display: flex;
+        }
+        .tal-inlinecheckboxes{
             display: flex;
             flex-wrap: wrap;
-            flex-direction: column;
         }
+        .commonStyle{
+            width: 50%;}
 
-        .twoPAge {
-            width: 45%;
-            display: flex;
-            flex-direction: column;
-            margin-left: 4%;
-            height: auto;
-        }
-
-        .allinput {
-            display: block;
-            box-sizing: border-box;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            padding: 6px 10px;
-            height: 38px;
-            width: 100%;
-            line-height: 1.3;
-            border-radius: 2px;
-            color: #005395;
-            font-weight: 600
-        }
-
-        .wpforms-field-label {
-            display: block;
-            color: #7b7b7b;
-            font-family: 'Microsoft YaHei', 'Lato';
-            font-size: 16px;
-            float: none;
-            line-height: 1.3;
-            font-weight: 700;
-            margin: 0 0 4px 0;
-            padding: 0;
-            word-break: break-all;
-        }
-
-        .onePage {
-            width: 95%;
-            margin-left: 4%
-        }
         #formsubmit{
-            border: 1px solid #ddd;
-            padding: 10px 15px;
-            background-color: #005395;
             color: #fff;
-            font-weight: 600;
-            width: 100px;
+            background-color: #000000;
+            height: 50px;
+            font-size: 20px;
+            padding: 0 20px;
+        }
+        #email{
+            font-size: 18px;
+            color: #797979;
+            border: 1px solid #cccccc;
+            background-color: #f2f2f2;
+            height: 40px;
+            width: 100%;
+        }
+        h2,h3 {
+            font-weight: bold;
         }
     </style>
+
 </head>
 <body>
-<h2 align="center">Personal Information update</h2>
-<form th:action="@{/saveUserInfo}" th:object="${user}" method="POST">
-    <input type="hidden" th:field="*{id}" value=""  /><br/>
-    <div style="display: flex;justify-content: space-between;">
-        <div class="fullName twoPAge">
-            <label for="first_name" class="wpforms-field-label">First Name<span
-                    style="color: #ff0000;">*</span></label>
-            <input type="text" value="test" th:field="*{first_name}" name="first_name" class="allinput" />
+<div id="maincontainerdiv" class="container">
+    <div style="text-align: center">
+        <div class="logo">
+            <img th:src="@{/static/image/Tatler_Logo.png}" alt="TatlerLogo" width="200">
         </div>
-        <div class="fullName twoPAge">
-            <label for="last_name" class="wpforms-field-label">LastName<span
-                    style="color: #ff0000;">*</span></label>
-            <input type="text" value="tom" th:field="*{last_name}" name="last_name" class="allinput"><br>
+        <h2 style="margin-bottom: 40px;">Update Your Preferences</h2>
+        <hr style="color: #e0e0e0">
+    </div>
+    <div class="formcontainer">
+        <form th:action="@{/saveUserInfo}" th:object="${user}" method="POST">
+            <!--email-->
+            <div class="form-section">
+                <input type="hidden" th:field="*{id}" value="" /><br/>
+                <h3 style="margin-bottom: 20px;">Email Address</h3>
+                    <input type="text" th:field="*{email}"  class="form-control" readonly="true">
+            </div>
+            <!--Best of Tatler-->
+            <div class="form-section">
+                <h3>Best of Tatler</h3>
+                <p class="formpara">A must-read, curated weekly roundup of the biggest trending stories across Asia.
+                    Be in the know first.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_New}"  name="Tatler_Digest_New">
+                    <label class="form-check-label" for="Tatler_Digest_New">
+                        Best of Tatler
+                    </label>
+                </div>
+            </div>
 
-        </div>
-    </div>
-    <div class="address onePage">
-        <label for="address_one" class="wpforms-field-label">Address_one:<span
-                style="color: #ff0000;">*</span></label>
-        <input type="text" value="asasasaa" th:field="*{address_one}" name="address_one" class="allinput" />
-    </div>
-    <div class="onePage">
-        <label for="email">email:<span style="color: #ff0000;">*</span></label>
-        <input type="text" value="test@qq.com" th:field="*{email}" name="email" class="allinput" /> <br>
-    </div>
-    <div style="display: flex;justify-content: space-between;">
-        <div class="twoPAge">
-            <label for="country" class="wpforms-field-label">country:<span style="color: #ff0000;">*</span></label>
-            <input type="text" value="asd" th:field="*{country}" name="country" class="allinput" /> <br>
-        </div>
-        <div class="twoPAge">
-            <label for="city" class="wpforms-field-label">city<span style="color: #ff0000;">*</span></label>
-            <input type="text" value="asdad" th:field="*{city}" name="city" class="allinput" /> <br>
-        </div>
-    </div>
-    <div style="display: flex;justify-content: space-between;">
-        <div class="twoPAge">
-            <label for="phone" class="wpforms-field-label">phone:<span style="color: #ff0000;">*</span></label>
-            <input type="text" value="12313" th:field="*{phone}" name="phone" class="allinput"> <br>
-        </div>
+            <!--Tatler Digest-->
+            <div class="form-section">
+                <h3>Tatler Digest</h3>
+                <p class="formpara">
+                    Tatler Digest Our editor's picks to the latest in lifestyle news, dining tips and cultural
+                    happenings in and around Asia.
+                </p>
+                <!--Checkboxes-->
+                <div class="row tal-inlinecheckboxes">
 
-        <div class="twoPAge">
-            <label for="fax" class="wpforms-field-label">fax:<span style="color: #ff0000;">*</span></label>
-            <input type="text" value="123213" th:field="*{fax}" name="fax" class="allinput"> <br>
-        </div>
+                    <div class="form-check col-6 commonStyle">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Hong_Kong_list}"  name="Tatler_Digest_Hong_Kong_list">
+                        <label class="form-check-label" for="Tatler_Digest_Hong_Kong_list">
+                            Hong Kong
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 form-check-custom-top commonStyle ">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Malaysia_list}"  name="Tatler_Digest_Malaysia_list">
+                        <label class="form-check-label" for="Tatler_Digest_Malaysia_list">
+                            Malaysia
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 commonStyle">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Philippines_list}"  name="Tatler_Digest_Philippines_list">
+                        <label class="form-check-label" for="Tatler_Digest_Philippines_list">
+                            Philippines
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 commonStyle">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Singapore_list}"  name="Tatler_Digest_Singapore_list">
+                        <label class="form-check-label" for="Tatler_Digest_Singapore_list">
+                            Singapore
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 form-check-custom-top commonStyle">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Digest_Taiwan_list}"  name="Tatler_Digest_Taiwan_list">
+                        <label class="form-check-label" for="Tatler_Digest_Taiwan_list">
+                            Taiwan
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Tatler Dining-->
+            <div class="form-section">
+                <h3>Tatler Dining</h3>
+                <p class="formpara">
+                    Ultimate guide to Asia’s dining scene with restaurant news, reviews and the tastemakers shaping
+                    the scene.
+                </p>
+                <!--Checkboxes-->
+                <div class="row tal-inlinecheckboxes">
+
+                    <div class="form-check col-6 commonStyle">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Hong_Kong_list}" name="Tatler_Dining_Hong_Kong_list">
+                        <label class="form-check-label" for="Tatler_Dining_Hong_Kong_list">
+                            Hong Kong
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 commonStyle">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Malaysia_list}" name="Tatler_Dining_Malaysia_list">
+                        <label class="form-check-label" for="Tatler_Dining_Malaysia_list">
+                            Malaysia
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 form-check-custom-top commonStyle">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Philippines_list}" name="Tatler_Dining_Philippines_list">
+                        <label class="form-check-label" for="Tatler_Dining_Philippines_list">
+                            Philippines
+                        </label>
+                    </div>
+
+                    <div class="form-check col-6 commonStyle">
+                        <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Dining_Singapore_list}" name="Tatler_Dining_Singapore_list">
+                        <label class="form-check-label" for="Tatler_Dining_Singapore_list">
+                            Singapore
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!--Tatler Homes-->
+            <div class="form-section">
+                <h3>Best of Tatler Homes</h3>
+                <p class="formpara">
+                    Transform your space into a luxurious sanctuary with exclusive home tours, property news and
+                    decor tips.
+                </p>
+                <!--Checkboxes-->
+                <div class="form-check col-6">
+                    <input class="form-check-input" type="checkbox" value="true" th:field="*{Tatler_Homes_list}"  name="Tatler_Homes_list">
+                    <label class="form-check-label" for="Tatler_Homes_list">
+                        Best of Tatler Homes
+                    </label>
+                </div>
+            </div>
+
+
+
+            <!--Front & Female-->
+            <div class="form-section">
+                <h3>Front &amp; Female</h3>
+                <p class="formpara">
+                    Stories that celebrate trailblazers and provoke conversations on women’s health, money, sex, parenting, and more.
+                </p>
+                <!--Checkboxes-->
+                <div class="form-check col-6">
+                    <input class="form-check-input" type="checkbox" value="true" th:field="*{Front_Female}" name="FrontFemale">
+                    <label class="form-check-label" for="FrontFemale">
+                        Front &amp; Female
+                    </label>
+                </div>
+            </div>
+
+            <!--Front & Female-->
+            <div class="form-section">
+                <h3>Generation T</h3>
+                <p class="formpara">
+                    Your guide to the people, businesses and ideas shaping Asia’s future.
+                </p>
+                <!--Checkboxes-->
+                <div class="form-check col-10">
+                    <input class="form-check-input" type="checkbox" value="true" th:field="*{Generation_T_list}" name="Generation_T_list">
+                    <label class="form-check-label" for="Generation_T_list">
+                        The Gen.T Weekly and The Deep Dive
+                    </label>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="input-group mb-3 mt-3" style="justify-content: center">
+                    <input type="submit" value="Save Preferences" id="formsubmit">
+                </div>
+            </div>
+        </form>
     </div>
-    <div style="text-align: center;">
-        <input type="submit" value="submit" id="formsubmit">
-    </div>
-</form>
+
+</div>
 </body>
 </html>

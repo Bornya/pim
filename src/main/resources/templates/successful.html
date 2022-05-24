@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TatlerAsia</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}" type="text/css">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <link th:href="@{/static/css/css2}" rel="stylesheet">
+    <!--BootStrap Css-->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <style>
+        *, ::after, ::before{
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+<div id="maincontainerdiv" class="container">
+    <div style="text-align: center">
+        <div class="logo">
+            <img th:src="@{/static/image/Tatler_Logo.png}" alt="TatlerLogo" width="200">
+        </div>
+        <h2>Update Your Preferences</h2>
+        <hr>
+        <div class="formcontainer">
+            <div class="form-section text-center">
+                <h3>Thank you!</h3>
+                <h4>You are successfully update your Preferences!</h4>
+            </div>
+        </div>
+</div>
+</body>
+</html>

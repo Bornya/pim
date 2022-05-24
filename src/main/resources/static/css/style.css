@@ -16,13 +16,16 @@ hr{
 h2,h3,h4,h5,h6{
     font-weight: 700;
 }
+h3{
+    font-size: calc(1.3rem + .6vw)
+}
 /*Custom Class*/
 .formpara,label{
     font-weight: 400;
     font-size: 20px;
 }
 .formpara {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 #maincontainerdiv{
     padding: 40px 40px;
@@ -39,6 +42,7 @@ h2,h3,h4,h5,h6{
 }
 .form-check{
     margin-top: 0px;
+
 }
 #submit-button{
     flex: 0.1 auto;
@@ -56,6 +60,7 @@ h2,h3,h4,h5,h6{
 label.form-check-label{
     font-size: 20px;
     line-height: 35px;
+    margin-bottom:20px;
 }
 .form-check-input{
     margin-top: 0.20em;
@@ -66,6 +71,8 @@ label{
 .form-control[type="text"] {
     border-radius: 0;
     border-color: #000;
+    font-weight: 400;
+    font-size: 20px;
 }
 .form-check-custom-top {
     margin-top: 40px;
