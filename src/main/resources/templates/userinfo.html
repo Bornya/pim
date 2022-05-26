@@ -33,7 +33,8 @@
             background-color: #000000;
             height: 50px;
             font-size: 20px;
-            padding: 0 20px;
+            padding: 0 22px;
+            border: none;
         }
         #email{
             font-size: 18px;
@@ -42,9 +43,11 @@
             background-color: #f2f2f2;
             height: 40px;
             width: 100%;
+            padding: 24px 16px;
+            margin-bottom: 40px;
         }
         h2,h3 {
-            font-weight: bold;
+            font-weight: bolder;
         }
     </style>
 
@@ -55,8 +58,8 @@
         <div class="logo">
             <img th:src="@{/static/image/Tatler_Logo.png}" alt="TatlerLogo" width="200">
         </div>
-        <h2 style="margin-bottom: 40px;">Update Your Preferences</h2>
-        <hr style="color: #e0e0e0">
+        <h2 style="margin-bottom: 40px;margin-top: 40px;">Update Your Preferences</h2>
+        <hr style="color: #e0e0e0;height: 2px">
     </div>
     <div class="formcontainer">
         <form th:action="@{/saveUserInfo}" th:object="${user}" method="POST">
@@ -83,7 +86,7 @@
             <div class="form-section">
                 <h3>Tatler Digest</h3>
                 <p class="formpara">
-                    Tatler Digest Our editor's picks to the latest in lifestyle news, dining tips and cultural
+                    Our editor's picks to the latest in lifestyle news, dining tips and cultural
                     happenings in and around Asia.
                 </p>
                 <!--Checkboxes-->
@@ -169,7 +172,7 @@
 
             <!--Tatler Homes-->
             <div class="form-section">
-                <h3>Best of Tatler Homes</h3>
+                <h3>Tatler Homes</h3>
                 <p class="formpara">
                     Transform your space into a luxurious sanctuary with exclusive home tours, property news and
                     decor tips.
@@ -189,7 +192,7 @@
             <div class="form-section">
                 <h3>Front &amp; Female</h3>
                 <p class="formpara">
-                    Stories that celebrate trailblazers and provoke conversations on women’s health, money, sex, parenting, and more.
+                    A resource to be your best self. Read about trailblazing women; parenting, money, and health; events; and more.
                 </p>
                 <!--Checkboxes-->
                 <div class="form-check col-6">

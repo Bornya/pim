@@ -25,7 +25,8 @@ h3{
     font-size: 20px;
 }
 .formpara {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 #maincontainerdiv{
     padding: 40px 40px;
@@ -35,7 +36,7 @@ h3{
 }
 /*Main Form*/
 .form-section{
-    margin: 40px 0px;
+    margin: 25px 0px;
 }
 .row.tal-inlinecheckboxes{
     margin: 0;
