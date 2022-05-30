@@ -1,5 +1,6 @@
 package com.bornya.pim.until;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
@@ -225,6 +226,261 @@ public class TxtUtils {
 
 
     public static void main(String[] args) throws Exception {
+
+        String result = "{\n" +
+                "    \"nextPageToken\": null,\n" +
+                "    \"nextPageUrl\": null,\n" +
+                "    \"values\": [\n" +
+                "        {\n" +
+                "            \"id\": 138016402,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-24T14:18:11+08:00\",\n" +
+                "            \"createdById\": 43136543,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"HK_DIG_FULL_20220525_sticky rice dumplings\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Dining Hong Kong\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-25T12:00:00+08:00\",\n" +
+                "            \"subject\": \"'Tis the season for sticky rice dumplings\",\n" +
+                "            \"updatedAt\": \"2022-05-25T12:18:50+08:00\",\n" +
+                "            \"updatedById\": 43136543\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 138017536,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-24T16:22:28+08:00\",\n" +
+                "            \"createdById\": 52903841,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"PH_DIN_The Best Italian Restaurants in the Philippines_FULL20220525\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Dining Philippines\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-25T08:00:00+08:00\",\n" +
+                "            \"subject\": \"The Best Italian Restaurants in the Philippines\",\n" +
+                "            \"updatedAt\": \"2022-05-25T08:16:22+08:00\",\n" +
+                "            \"updatedById\": 52903841\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 138735991,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-25T10:28:43+08:00\",\n" +
+                "            \"createdById\": 43135353,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"SG_DIN_Nasi Lemak_FULL20220525\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Dining Singapore\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-25T11:30:00+08:00\",\n" +
+                "            \"subject\": \"The Best Nasi Lemak in Singapore\",\n" +
+                "            \"updatedAt\": \"2022-05-25T11:41:09+08:00\",\n" +
+                "            \"updatedById\": 43135353\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 138736063,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-25T10:54:41+08:00\",\n" +
+                "            \"createdById\": 43912313,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"MY_DIN_Discovering Martell Chanteloup XXO Via a Multi-Sensorial Experience_FULL20220525\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Dining Malaysia\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-25T11:00:00+08:00\",\n" +
+                "            \"subject\": \"Discovering Martell Chanteloup XXO Via a Multi-Sensorial Experience\",\n" +
+                "            \"updatedAt\": \"2022-05-25T11:07:25+08:00\",\n" +
+                "            \"updatedById\": 43912313\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 138919225,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-25T12:13:57+08:00\",\n" +
+                "            \"createdById\": 42610783,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"SG_EDM_Marriott(Tomlinson)_FULL20220526\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Dining Singapore\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-26T16:00:00+08:00\",\n" +
+                "            \"subject\": \"Afternoon Tea Doesn’t Get Any Better Than This! \",\n" +
+                "            \"updatedAt\": \"2022-05-26T16:10:18+08:00\",\n" +
+                "            \"updatedById\": 42610783\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 138926422,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-25T15:29:12+08:00\",\n" +
+                "            \"createdById\": 43115723,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"MY_DIG_WinnersTropheeChopard_FULL20220526\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Malaysia\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-26T10:00:00+08:00\",\n" +
+                "            \"subject\": \"Cannes 2022: Winners of Trophée Chopard\",\n" +
+                "            \"updatedAt\": \"2022-05-26T10:12:43+08:00\",\n" +
+                "            \"updatedById\": 43115723\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 138930622,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-25T16:23:28+08:00\",\n" +
+                "            \"createdById\": 43135353,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"SG_DIG_Which ‘Bling Empire’ Star Earns the Most_FULL20220526\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Singapore\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-26T13:00:00+08:00\",\n" +
+                "            \"subject\": \"Which ‘Bling Empire’ Star Earns The Most?\",\n" +
+                "            \"updatedAt\": \"2022-05-26T13:09:34+08:00\",\n" +
+                "            \"updatedById\": 43135353\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 138977041,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-25T18:11:17+08:00\",\n" +
+                "            \"createdById\": 43114733,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"TW_DIG慶端午20間款質感名粽推薦_ACT20220526\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Taiwan\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-26T11:00:00+08:00\",\n" +
+                "            \"subject\": \"慶端午20間款質感名粽推薦\",\n" +
+                "            \"updatedAt\": \"2022-05-26T11:16:04+08:00\",\n" +
+                "            \"updatedById\": 43114733\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 140419438,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-26T10:29:55+08:00\",\n" +
+                "            \"createdById\": 42932363,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"HK_DIG_The Best Hong Kong Homes on  the Market: May 2022_FULL20220526\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Hong Kong\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-26T11:00:00+08:00\",\n" +
+                "            \"subject\": \"The Best Hong Kong Homes on  the Market: May 2022\",\n" +
+                "            \"updatedAt\": \"2022-05-26T11:16:04+08:00\",\n" +
+                "            \"updatedById\": 42932363\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 140419486,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-26T10:56:04+08:00\",\n" +
+                "            \"createdById\": 52903841,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"PH_DIG_SEA's Biggest Nike Store Now Open in the Philippines_FULL20220526\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerphilippines.com\",\n" +
+                "                    \"name\": \"Tatler Philippines \",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-26T11:30:00+08:00\",\n" +
+                "            \"subject\": \"SEA's Biggest Nike Store Now Open in the Philippines\",\n" +
+                "            \"updatedAt\": \"2022-05-26T11:38:26+08:00\",\n" +
+                "            \"updatedById\": 52903841\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": 140784427,\n" +
+                "            \"campaignId\": 269,\n" +
+                "            \"clientType\": \"Web\",\n" +
+                "            \"createdAt\": \"2022-05-26T18:19:23+08:00\",\n" +
+                "            \"createdById\": 42610713,\n" +
+                "            \"isDeleted\": false,\n" +
+                "            \"isPaused\": false,\n" +
+                "            \"isSent\": true,\n" +
+                "            \"name\": \"Tatler MetaVersed Ep7_Winners\",\n" +
+                "            \"senderOptions\": [\n" +
+                "                {\n" +
+                "                    \"address\": \"enews@tatlerasia.com\",\n" +
+                "                    \"name\": \"Tatler Asia\",\n" +
+                "                    \"type\": \"general_user\"\n" +
+                "                }\n" +
+                "            ],\n" +
+                "            \"sentAt\": \"2022-05-26T18:19:23+08:00\",\n" +
+                "            \"subject\": \"Congratulations: World of Women Whitelist\",\n" +
+                "            \"updatedAt\": \"2022-05-26T18:29:33+08:00\",\n" +
+                "            \"updatedById\": 42610713\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+        JSONObject jsonObject = JSONObject.parseObject(result);
+        System.out.println(jsonObject.getString("nextPageToken"));
+        JSONArray jsonArray = jsonObject.getJSONArray("values");
+        JSONObject obj = jsonArray.getJSONObject(0);
+        System.out.println(obj.getString("id"));
+
 
 
     }
