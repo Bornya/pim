@@ -67,10 +67,10 @@ public class HttpUtils {
             throw new RuntimeException("The request URL is blank.");
         }
 
-        // 如果是Https请求
-        if (url.startsWith(HTTPS)) {
-            getTrust();
-        }
+//        // 如果是Https请求
+//        if (url.startsWith(HTTPS)) {
+//            getTrust();
+//        }
         Connection connection = Jsoup.connect(url);
         connection.method(Method.GET);
         connection.timeout(TIME_OUT);

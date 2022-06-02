@@ -157,10 +157,10 @@ public class AESUtil {
         String password = "123456";     //加解密的密码
         byte[] secretKey = getSecretKey(password);
         Key key = toKey(secretKey);
-        System.out.println("明文 ：" + id);
+//        System.out.println("明文 ：" + id);
         byte[] encryptData = encrypt(id.getBytes(), key);
         String encryptDataHex = Hex.encodeHexString(encryptData);   //把密文转为16进制
-        System.out.println("加密 : " + encryptDataHex);
+//        System.out.println("加密 : " + encryptDataHex);
         return encryptDataHex;
     }
     //解密id

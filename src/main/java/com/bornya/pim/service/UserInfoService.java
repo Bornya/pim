@@ -171,7 +171,11 @@ public class UserInfoService {
     //查询一个小时内新的所有数据
     public List<CustomUser> getLastNewUser() throws Exception {
         List<CustomUser> list = new ArrayList<>();
-        String url = "https://pi.pardot.com/api/prospect/version/4/do/query/?created_after="+Utils.getTime(100);
+//        String url = "https://pi.pardot.com/api/prospect/version/4/do/query/?created_after="+Utils.getTime(100);
+        //取最新的id 字段
+        Map<String,String> map = Utils.readConfig(token_file_path);
+        String url="https://pi.pardot.com/api/prospect/version/4/do/query/?id_greater_than="+map.get("id")+"&fields=id,uuid&limit=100&sort_by=id";
+        System.out.println(url);
         Connection.Response response = HttpUtils.get(url,getHeaders());
         String result = Utils.parsingResponse(response);
         //解析结果
@@ -191,7 +195,6 @@ public class UserInfoService {
                 String id = "";
                 String getUuid = "";
                 String uuid = "";
-                String first_name = "";
                 while (it.hasNext()) {
                     Element element = (Element) it.next();// 一个Item节点
                     if (element.getName().equals("id")) {
@@ -200,11 +203,8 @@ public class UserInfoService {
                     if (element.getName().equals("uuid")) {
                         getUuid = element.getTextTrim();
                     }
-                    if (element.getName().equals("first_name")) {
-                        first_name = element.getTextTrim();
-                    }
                 }
-                if(id.length()>6&&first_name.contains("test")){  //测试环境，监控测试账号
+                if(id.length()>6){  //测试环境，监控测试账号
                     uuid = AESUtil.getEncryptUUid(id);
                     if(!getUuid.equals(uuid)){
                         customUser.setId(id);
@@ -212,35 +212,29 @@ public class UserInfoService {
                         list.add(customUser);
                     }
                 }
-
             }
         }
         return list;
     }
     // 更新自定义字段UUId
-    public void batchUpdate(List<CustomUser> userList) throws IOException {
-//        String url = "https://pi.pardot.com/api/prospect/version/4/do/batchUpdate";
-//        StringBuilder builder = new StringBuilder("");
-//        builder.append("prospects=<prospects>\n");
-//        for (CustomUser c:userList
-//             ) {
-//            builder.append("<prospect>\n");
-//            builder.append("<id>").append(c.getId()).append("</id>\n");
-//            builder.append("<uuid>").append(c.getUuid()).append("</uuid>\n");
-//            builder.append("</prospect>\n");
-//        }
-//        builder.append("</prospects>\n");
-//        System.out.println(builder);
-//        Connection.Response response= HttpUtils.post(url,builder.toString(),getHeaders());
+    public void batchUpdate(List<CustomUser> userList) throws InterruptedException {
         for (CustomUser c:userList
         ) {
             String url = "https://pi.pardot.com/api/prospect/version/4/do/update/id/" + c.getId()
                     + "?uuid=" + c.getUuid();
             Connection.Response response = HttpUtils.get(url, getHeaders());
-            String result = Utils.parsingResponse(response);
-            System.out.println(result);
+            if(response==null){
+                System.out.println(c.getId()+"更新失败");
+            }else if(response.statusCode()==200){
+                System.out.println(c.getId()+"更新成功");
+            }else{
+                System.out.println(c.getId()+"更新失败");
+            }
+            Thread.sleep(1000);
         }
-
+        String id = userList.get(userList.size()-1).getId();
+        System.out.println("最新的起始id:"+id);
+        Utils.writeConfig(token_file_path,"id",id);
     }
     //API请求头
     public Map<String,String> getHeaders(){
