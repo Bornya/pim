@@ -179,6 +179,7 @@ public class UserInfoService {
         Connection.Response response = HttpUtils.get(url,getHeaders());
         String result = Utils.parsingResponse(response);
         //解析结果
+        String startId= map.get("id");
         if(result.contains("prospect")){
             Document doc = null;
             try {
@@ -199,12 +200,13 @@ public class UserInfoService {
                     Element element = (Element) it.next();// 一个Item节点
                     if (element.getName().equals("id")) {
                         id = element.getTextTrim();
+                        startId = id;
                     }
                     if (element.getName().equals("uuid")) {
                         getUuid = element.getTextTrim();
                     }
                 }
-                if(id.length()>6){  //测试环境，监控测试账号
+                if(id.length()>2){  //测试环境，监控测试账号
                     uuid = AESUtil.getEncryptUUid(id);
                     if(!getUuid.equals(uuid)){
                         customUser.setId(id);
@@ -214,6 +216,8 @@ public class UserInfoService {
                 }
             }
         }
+        System.out.println("最新的起始id:"+startId);
+        Utils.writeConfig(token_file_path,"id",startId);
         return list;
     }
     // 更新自定义字段UUId
@@ -224,13 +228,13 @@ public class UserInfoService {
                     + "?uuid=" + c.getUuid();
             Connection.Response response = HttpUtils.get(url, getHeaders());
             if(response==null){
-                System.out.println(c.getId()+"更新失败");
+                System.out.print(c.getId()+"更新失败");
             }else if(response.statusCode()==200){
-                System.out.println(c.getId()+"更新成功");
+                System.out.print(c.getId()+"更新成功");
             }else{
-                System.out.println(c.getId()+"更新失败");
+                System.out.print(c.getId()+"更新失败");
             }
-            Thread.sleep(1000);
+            Thread.sleep(500);
         }
         String id = userList.get(userList.size()-1).getId();
         System.out.println("最新的起始id:"+id);
