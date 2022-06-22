@@ -21,9 +21,6 @@ public class ScheduleTask {
 
     //3.添加定时任务
     @Scheduled(cron = "0 */5 * * * ?")
-//    @Scheduled(cron = "0/60 * * * * ?")
-    //每5分钟执行一次任务
-    //@Scheduled(fixedRate=5000)
     private void configureTasks() throws Exception {
         System.err.println("执行静态定时任务时间: " + LocalDateTime.now());
         //批量更新，让这5分钟的数据的自定字段uuid的值更新为id的进行aes加密后的值
@@ -34,6 +31,13 @@ public class ScheduleTask {
             System.out.println("新增数据长度："+list.size());
             userInfoService.batchUpdate(list);
         }
+    }
+
+    //每日凌晨1点，统计今天一天更新了多少数据
+    @Scheduled(cron = "0 0 1 * * ?")
+    private void statisticsTasks() throws Exception {
+        System.err.println("执行统计静态定时任务时间: " + LocalDateTime.now());
+        userInfoService.emailNotification(LocalDateTime.now()+"|Last Updated ID:"+userInfoService.getLastId(),"success");
     }
 
 }

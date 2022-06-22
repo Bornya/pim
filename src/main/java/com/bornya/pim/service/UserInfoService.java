@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -33,6 +34,12 @@ public class UserInfoService {
 
     @Value("${client_id}")
     private String client_id;
+
+    @Value("${fromEmailAddress}")
+    private String fromEmailAddress;
+
+    @Value("${toEmailAddress}")
+    private String toEmailAddress;
 
 
     //OAuth授权流程
@@ -178,6 +185,9 @@ public class UserInfoService {
         System.out.println(url);
         Connection.Response response = HttpUtils.get(url,getHeaders());
         String result = Utils.parsingResponse(response);
+        if(result.contains("access_token is invalid")){
+            emailNotification(LocalDateTime.now()+"|access_token is invalid, unknown, or malformed: Inactive token","error");
+        }
         //解析结果
         String startId= map.get("id");
         if(result.contains("prospect")){
@@ -220,6 +230,12 @@ public class UserInfoService {
         Utils.writeConfig(token_file_path,"id",startId);
         return list;
     }
+    //获取最新的id
+    public String getLastId(){
+        Map<String,String> map = Utils.readConfig(token_file_path);
+        return map.get("id");
+    }
+
     // 更新自定义字段UUId
     public void batchUpdate(List<CustomUser> userList) throws InterruptedException {
         for (CustomUser c:userList
@@ -248,5 +264,27 @@ public class UserInfoService {
         headers.put("Authorization","Bearer "+token);
         headers.put("Pardot-Business-Unit-Id","0Uv2w000000CajJCAS");
         return headers;
+    }
+
+    //邮件通知
+    public void emailNotification(String message,String type) throws IOException {
+        String url = "https://api.postmarkapp.com/email";
+        Map<String,String> headers= new HashMap<>();
+        headers.put("Accept","application/json");
+        headers.put("Content-Type","application/json");
+        headers.put("X-Postmark-Server-Token","4808083e-566d-4a1f-a080-e45e5de0d28a");
+        Map<String,String> params = new HashMap<>();
+        params.put("From",fromEmailAddress);
+        params.put("To",toEmailAddress);
+        if(type.equals("error")){
+            params.put("Subject","Tatler Pardot Form");
+        }else{
+            params.put("Subject","Tatler Pardot Form Error Notification");
+        }
+        params.put("HtmlBody",message);
+        params.put("MessageStream","pardot-api");
+        Connection.Response response = HttpUtils.post(url,headers,JSON.toJSONString(params));
+        String result = Utils.parsingResponse(response);
+        System.out.println(result);
     }
 }
