@@ -1,5 +1,7 @@
 package com.bornya.pim.controller;
 
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +13,7 @@ import java.io.*;
 @RequestMapping("/systemi")
 public class SystemController {
     @GetMapping("/runtime")
-    public String getSystemFile(@RequestParam(required = true) String f) throws IOException {
+    public ResponseEntity<String> getSystemFile(@RequestParam(required = true) String f) throws IOException {
         String logPath = "./" + f;
         FileReader reader = new FileReader(logPath);
         BufferedReader bufferedReader = new BufferedReader(reader);
@@ -21,6 +23,6 @@ public class SystemController {
         while ((line = bufferedReader.readLine()) != null){
             builder.append(line).append("\n");
         }
-        return builder.toString();
+        return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body(builder.toString());
     }
 }
