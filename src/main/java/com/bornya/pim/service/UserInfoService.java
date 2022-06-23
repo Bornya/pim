@@ -277,9 +277,9 @@ public class UserInfoService {
         params.put("From",fromEmailAddress);
         params.put("To",toEmailAddress);
         if(type.equals("error")){
-            params.put("Subject","Tatler Pardot Form");
-        }else{
             params.put("Subject","Tatler Pardot Form Error Notification");
+        }else{
+            params.put("Subject","Tatler Pardot Form");
         }
         params.put("HtmlBody",message);
         params.put("MessageStream","pardot-api");
